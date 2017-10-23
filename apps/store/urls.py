@@ -12,5 +12,7 @@ urlpatterns = [
     url(r'^logout$', views.logout),
     url(r'^(?P<number>\d+)/items$', views.product),
     url(r'^(?P<number>\d+)/addItem$', views.addItem),
+    url(r'^(?P<number>\d+)/remove$', views.remove),
     url(r'^checkout$', views.checkout),
+    url(r'^confirmation$', views.confirmation),
 ]
