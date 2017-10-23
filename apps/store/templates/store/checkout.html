@@ -1,0 +1,64 @@
+<html>
+        <head>
+            <title>Register</title>
+            <meta charset="UTF-8">
+            {% load static %}
+            <link rel="stylesheet" href="{% static 'store/css/register.css' %}" media="screen" title="no title"  charset="utf-8">
+        </head>
+        <body>
+            <div id="wrapper">
+                <div class="header">
+                    <img src="{% static 'store/images/logo.png' %}" alt="logo.png"/>
+                    <h2>Ricardo's Tienda Picante Loca</h2>
+                    <h5>[The only place where ALL sauces are so friggin livin la vida loca!]</h5>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><p>|</p><a href="/dummy">About</a></li>
+                        <li><p>|</p><a href="/dummy">News</a></li>
+                        <li><p>|</p><a href="/dummy">Contact</a></li>
+                        {%if not request.session.id%}
+                        <li><p>|</p><a href="/register">Join</a></li>
+                        <li><p>|</p><a href="/login">Log in</a></li>
+                        {%endif%}
+                        {%if request.session.id%}
+                        <li><p>|</p><a href="/checkout">Cart</a></li>
+                        <li><p>|</p><a href="/logout"> Log out</a></li>
+                        {%endif%}
+                    </ul>
+                </div>
+                <div class="body">
+                    {%for i in stuff%}
+                    <img src="{%static i.image%}" alt="{{i.id}}.jpg"/>
+                        <p> {{i.name}}</p>
+                        <p> ${{i.price}}</p>
+                        <p> {{i.desc}}</p>
+                        <form action="/{{i.id}}/addItem">
+                            <select name="quantity">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                            </select>
+                            <input type="submit" value="Add to cart">
+    
+                        </form>
+                    {%endfor%}
+                    <br><br>
+                    {% if messages %}
+                        {% for message in messages %}
+                        <p> {{ message }}</p>
+                        {% endfor %}
+                    {% endif %}
+                    
+                </div>
+                <div class="footer">
+                    <p>&#9400; 2017 Ricardo's Tienda Picante Loca</p>
+                    <p> Failure to adhere by copyright laws will result in a personal visit from the owner, Ricardo Rojas</p>
+                    <h5> And you don't want that to happen now, do you?</h5>
+                    <h5>Here comes the pain, cabron</h5>
+                </div>
+            </div>
+        </body>
+    </html>
